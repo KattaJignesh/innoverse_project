@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Engine - Innovation Hub</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 30px;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+        .search-container {
+            text-align: center;
+            margin-top: 100px;
+        }
+        .search-box input {
+            padding: 10px;
+            width: 300px;
+            border-radius: 10px;
+            border: none;
+            font-size: 16px;
+        }
+        .btn {
+            padding: 10px 20px;
+            background: #ff6600;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        .filters {
+            margin: 20px 0;
+        }
+        .filters select, .filters input {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+            border-radius: 10px;
+            border: none;
+        }
+        .search-results {
+            margin-top: 20px;
+        }
+        .search-result {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            margin: 10px auto;
+            width: 80%;
+            border-radius: 10px;
+        }
+        .search-result h3 {
+            margin: 0;
+            color: #ffcc00;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Innovation Insights</div>
+        <div class="nav-links">
+       
+        </div>
+    </nav>
+    <div class="search-container">
+        <h1>Discover Innovations Around the World</h1>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search for innovations...">
+            <button class="btn" onclick="performSearch()">🔍 Search</button>
+        </div>
+        <div class="filters">
+            <select id="industryFilter">
+                <option value="">Industry</option>
+                <option value="tech">Technology</option>
+                <option value="health">Healthcare</option>
+                <option value="energy">Energy</option>
+                <option value="finance">Finance</option>
+                <option value="education">Education</option>
+                <option value="agriculture">Agriculture</option>
+                <option value="automobile">Automobile</option>
+            </select>
+            <select id="locationFilter">
+                <option value="">Location</option>
+                <option value="india">India</option>
+                <option value="china">China</option>
+                <option value="usa">USA</option>
+                <option value="russia">Russia</option>
+                <option value="germany">Germany</option>
+                <option value="japan">Japan</option>
+            </select>
+            <input type="date" id="dateFilter">
+        </div>
+        <div id="searchResults" class="search-results"></div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sampleResults = [
+                { title: "AI-Powered Healthcare Solutions", description: "AI for early disease detection", industry: "health", location: "india", date: "2024-01-15" },
+                { title: "Sustainable Energy Storage", description: "New battery technology", industry: "energy", location: "germany", date: "2024-02-01" },
+                { title: "Electric Car Innovations", description: "Next-gen electric vehicles", industry: "automobile", location: "usa", date: "2023-12-05" },
+                { title: "Fintech Revolution", description: "Blockchain in banking", industry: "finance", location: "china", date: "2024-03-20" },
+                { title: "Space Exploration Tech", description: "New rocket propulsion", industry: "tech", location: "russia", date: "2024-05-10" },
+                { title: "AI Tutors in Education", description: "Smart AI-driven learning", industry: "education", location: "japan", date: "2024-04-25" },
+                { title: "Agricultural Drones", description: "Drones for crop monitoring", industry: "agriculture", location: "india", date: "2024-06-05" },
+                { title: "Water Purification Tech", description: "Affordable clean water solutions", industry: "tech", location: "india", date: "2024-07-01" },
+                { title: "Smart Farming", description: "IoT-based automated irrigation", industry: "agriculture", location: "india", date: "2024-07-15" },
+                { title: "EdTech Startups", description: "AI-powered personalized learning", industry: "education", location: "india", date: "2024-08-10" }
+            ];
+            function performSearch() {
+                const searchInput = document.getElementById('searchInput').value.toLowerCase();
+                const industryFilter = document.getElementById('industryFilter').value;
+                const locationFilter = document.getElementById('locationFilter').value;
+                const dateFilter = document.getElementById('dateFilter').value;
+                const filteredResults = sampleResults.filter(result => {
+                    return (!searchInput || result.title.toLowerCase().includes(searchInput)) &&
+                           (!industryFilter || result.industry === industryFilter) &&
+                           (!locationFilter || result.location === locationFilter) &&
+                           (!dateFilter || result.date >= dateFilter);
+                });
+                displayResults(filteredResults);
+            }
+            function displayResults(results) {
+                const resultsContainer = document.getElementById('searchResults');
+                resultsContainer.innerHTML = '';
+                if (results.length === 0) {
+                    resultsContainer.innerHTML = '<p>No results found</p>';
+                    return;
+                }
+                results.forEach(result => {
+                    const resultElement = document.createElement('div');
+                    resultElement.className = 'search-result';
+                    resultElement.innerHTML = `
+                        <h3>${result.title}</h3>
+                        <p>${result.description}</p>
+                        <div class="result-meta">
+                            <span>Industry: ${result.industry}</span>
+                            <span>Location: ${result.location}</span>
+                            <span>Date: ${result.date}</span>
+                        </div>
+                    `;
+                    resultsContainer.appendChild(resultElement);
+                });
+            }
+            window.performSearch = performSearch;
+        });
+    </script>
+</body>
+</html>

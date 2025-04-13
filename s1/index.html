@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expert Network - Innovation Insights</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Innovation Hub</div>
+        <div class="nav-links">
+            
+        </div>
+    </nav>
+
+    <div class="network-container">
+        <h1>Expert Network</h1>
+        <div class="expert-filters">
+            <input type="text" id="expertSearch" placeholder="Search experts...">
+            <select id="expertField">
+                <option value="">All Fields</option>
+                <option value="ai">Artificial Intelligence</option>
+                <option value="biotech">Biotechnology</option>
+                <option value="cleantech">Clean Technology</option>
+            </select>
+        </div>
+
+        <div class="experts-grid" id="expertsGrid"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const experts = [
+                { name: "Dr. Rajesh Sharma", field: "ai", expertise: "Machine Learning", location: "Bangalore", image: "images/img1.png", connections: 358, email: "rajesh.sharma@ai.net" },
+                { name: "Prof. Neha Verma", field: "biotech", expertise: "Gene Editing", location: "Hyderabad", image: "images/img2.png", connections: 245, email: "neha.verma@biotech.org" },
+                { name: "Dr. Vikram Patel", field: "cleantech", expertise: "Renewable Energy", location: "Mumbai", image: "images/img3.png", connections: 412, email: "vikram.patel@energy.com" },
+                { name: "Dr. Ananya Iyer", field: "ai", expertise: "Deep Learning", location: "Chennai", image: "images/img4.png", connections: 389, email: "ananya.iyer@ai.org" },
+                { name: "Prof. Rohan Desai", field: "biotech", expertise: "Stem Cell Research", location: "Pune", image: "images/img5.png", connections: 278, email: "rohan.desai@biotech.com" },
+                { name: "Dr. Sanya Kapoor", field: "cleantech", expertise: "Sustainable Materials", location: "Delhi", image: "images/img6.png", connections: 321, email: "sanya.kapoor@cleantech.org" }
+            ];
+        
+            function displayExperts(filteredExperts = experts) {
+                const grid = document.getElementById('expertsGrid');
+                grid.innerHTML = '';
+                filteredExperts.forEach(expert => {
+                    const expertCard = document.createElement('div');
+                    expertCard.className = 'expert-card';
+                    expertCard.innerHTML = 
+                        `<img src="${expert.image}" alt="${expert.name}" class="expert-image">
+                        <h3>${expert.name}</h3>
+                        <p class="expert-title">${expert.expertise}</p>
+                        <p class="expert-location">${expert.location}</p>
+                        <p class="expert-connections">${expert.connections} connections</p>
+                        <button class="btn connect-btn" data-name="${expert.name}" data-email="${expert.email}">Connect</button>`;
+                    grid.appendChild(expertCard);
+                });
+        
+                document.querySelectorAll('.connect-btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        connectExpert(this.dataset.name, this.dataset.email);
+                    });
+                });
+            }
+        
+            function connectExpert(name, email) {
+                alert(`You have connected with ${name}. Email: ${email}`);
+            }
+        
+            const searchInput = document.getElementById('expertSearch');
+            const fieldSelect = document.getElementById('expertField');
+        
+            function filterExperts() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const selectedField = fieldSelect.value;
+        
+                const filtered = experts.filter(expert => {
+                    const matchesSearch = expert.name.toLowerCase().includes(searchTerm) || expert.expertise.toLowerCase().includes(searchTerm);
+                    const matchesField = !selectedField || expert.field === selectedField;
+                    return matchesSearch && matchesField;
+                });
+                displayExperts(filtered);
+            }
+        
+            searchInput.addEventListener('input', filterExperts);
+            fieldSelect.addEventListener('change', filterExperts);
+        
+            displayExperts();
+        });
+        
+    </script>
+</body>
+</html>

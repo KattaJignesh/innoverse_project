@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Innovation Platform - Innovation Hub</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            color: #333;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #007BFF;
+            padding: 15px 20px;
+            color: white;
+        }
+        .navbar .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            font-size: 1.1em;
+        }
+        .platform-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1, h2 {
+            color: #007BFF;
+        }
+        .form-group {
+            margin: 15px 0;
+            text-align: left;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .btn {
+            background: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            width: 100%;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        .innovations-list {
+            margin-top: 20px;
+        }
+        .innovation-item {
+            background: #e9f5ff;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Innovation Insights</div>
+        
+        </div>
+    </nav>
+
+    <div class="platform-container">
+        <h1>Open Innovation Platform</h1>
+        
+        <div class="innovation-form">
+            <h2>Submit Your Innovation</h2>
+            <form id="innovationForm">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" required>
+                        <option value="">Select Category</option>
+                        <option value="tech">Technology</option>
+                        <option value="health">Healthcare</option>
+                        <option value="energy">Energy</option>
+                        <option value="education">Education</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Submit Innovation</button>
+            </form>
+        </div>
+
+        <div class="innovations-list">
+            <h2>Recent Innovations</h2>
+            <div id="innovationsList"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let innovations = JSON.parse(localStorage.getItem('innovations')) || [];
+            const innovationForm = document.getElementById('innovationForm');
+            
+            innovationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const newInnovation = {
+                    id: Date.now(),
+                    title: document.getElementById('title').value,
+                    description: document.getElementById('description').value,
+                    category: document.getElementById('category').value,
+                    date: new Date().toISOString(),
+                    votes: 0
+                };
+
+                innovations.unshift(newInnovation);
+                localStorage.setItem('innovations', JSON.stringify(innovations));
+                
+                innovationForm.reset();
+                displayInnovations();
+            });
+
+            function displayInnovations() {
+                const innovationsList = document.getElementById('innovationsList');
+                innovationsList.innerHTML = '';
+
+                innovations.forEach(innovation => {
+                    const innovationElement = document.createElement('div');
+                    innovationElement.className = 'innovation-item';
+                    innovationElement.innerHTML = `
+                        <h3>${innovation.title}</h3>
+                        <p>${innovation.description}</p>
+                        <div class="innovation-meta">
+                            <span>Category: ${innovation.category}</span>
+                            <span>Date: ${new Date(innovation.date).toLocaleDateString()}</span>
+                        </div>
+                        <div class="innovation-actions">
+                            <button class="vote-btn" onclick="voteInnovation(${innovation.id})">
+                                👍 ${innovation.votes} votes
+                            </button>
+                        </div>
+                    `;
+                    innovationsList.appendChild(innovationElement);
+                });
+            }
+
+            window.voteInnovation = function(id) {
+                const innovation = innovations.find(inn => inn.id === id);
+                if (innovation) {
+                    innovation.votes += 1;
+                    localStorage.setItem('innovations', JSON.stringify(innovations));
+                    displayInnovations();
+                }
+            };
+
+            displayInnovations();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trend Analysis - Innovation Hub</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #333;
+            color: white;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+        .trends-container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .trends-filters {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .chart-container {
+            position: relative;
+            height: 350px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Innovation Hub</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="login.html" class="login-btn">Login</a>
+        </div>
+    </nav>
+
+    <div class="trends-container">
+        <h1>Innovation Trends</h1>
+        <div class="trends-filters">
+            <select id="trendPeriod">
+                <option value="week">Past Week</option>
+                <option value="month">Past Month</option>
+                <option value="year">Past Year</option>
+            </select>
+        </div>
+
+        <div class="trend-card">
+            <h3>Trend Growth</h3>
+            <div class="chart-container">
+                <canvas id="trendChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('trendChart').getContext('2d');
+            
+            const trendData = {
+                week: [80, 55, 40, 50, 60, 30],
+                month: [95, 65, 48, 60, 75, 45],
+                year: [110, 75, 58, 70, 90, 55]
+            };
+            
+            const trendChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['AI', 'Sustainability', 'Biotech', 'Quantum Computing', 'Cybersecurity', 'Blockchain'],
+                    datasets: [{
+                        label: 'Growth %',
+                        data: trendData['week'],
+                        backgroundColor: ['#4CAF50', '#FF9800', '#673AB7', '#E91E63', '#009688', '#3F51B5']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            document.getElementById('trendPeriod').addEventListener('change', function(event) {
+                const period = event.target.value;
+                trendChart.data.datasets[0].data = trendData[period];
+                trendChart.update();
+            });
+        });
+    </script>
+</body>
+</html>
