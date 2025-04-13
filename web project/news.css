@@ -1,0 +1,189 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+header {
+    height: 60px; /* Adjust height as needed */
+    padding: 10px; /* Reduce padding */
+}
+
+
+/* Hero Section */
+.hero-section {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+}
+
+.hero-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    color: #555;
+}
+.logo-container {
+    text-align: center; /* Center the logo horizontally */
+    border-image-width: 10px;
+    display: flex;
+    padding:10px 20px
+}
+.logo{
+    width: 80x; /* Set a maximum width for the logo */
+    height: 80px; /* Maintain aspect ratio */
+    margin-right:10px;
+}
+/* Card Container */
+.content-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Individual Card */
+.card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.card a {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.card a:hover {
+    text-decoration: underline;
+}
+
+/* Featured Card */
+.card.featured {
+    background-color: #f0f8ff;
+    border-left: 5px solid #ff9900;
+    text-align: center;
+}
+
+
+label {
+    color: blue;
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+}
+  
+/* style.css */
+.featured-card {
+    align-self:center;
+    width: 300px; /* Example width - adjust as needed */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden; /* Key to contain the image */
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2); /* Optional: Adds a subtle shadow */
+   
+}
+
+.featured-image {
+    width: 100%; /* Image takes full width of the card */
+    height: auto; /* Maintains aspect ratio */
+    display: block; /* Prevents a small space below the image */
+    object-fit: cover; /* or contain, see explanation below*/
+}
+
+
+.card-content {
+    padding: 15px;
+}
+
+.card-content h3 {
+    margin-top: 0; /* Remove default margin */
+}
+ h1{
+    text-align: center;
+ }
+ .card-container {
+    width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .featured-cards {
+    display: flex; /* Aligns items in a horizontal row */
+    gap: 20px; /* Space between featured cards */
+    overflow-x: auto; /* Adds horizontal scrolling if needed */
+    padding: 10px 0;
+  }
+  
+  .featured-card {
+    flex: 1; /* Each card will take equal space */
+    min-width: 250px; /* Prevents cards from shrinking too much */
+    max-width: 300px; /* Controls max width */
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border-left: 5px solid #ff9900;
+  }
+  
+  .featured-card img {
+    width: 100%; /* Make images fit within the card */
+    height: auto;
+    border-radius: 5px;
+  }
+  .return-home {
+    display: flex;
+    justify-content: center; /* Center the button horizontally */
+    margin: 20px 0; /* Add some spacing around the button */
+}
+
+.home-button {
+    text-decoration: none; /* Remove the underline */
+    background-color: #25778b; /* Blue background color */
+    color: #fff; /* White text color */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.home-button:hover {
+    background-color: #56a8be; /* Darker blue on hover */
+}
+.button-icon {
+    width: 200px; /* Adjust icon size */
+    height: 200px; /* Keep it square */
+    display: inline-block;
+}

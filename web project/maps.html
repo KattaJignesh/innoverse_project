@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovation Map</title>
+    <link rel="stylesheet" href="maps.css">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+</head>
+<body>
+    <header>
+        <header class="logo-container">
+            <div class="logo-with-text">
+                <img src="logo.png" alt="Logo" class="logo">
+                <div class="logo-text">
+                    <h1>Innovation Insights</h1>
+                    <p>Your Gateway to the Latest Innovations</p>
+                </div>
+            </div>
+        </header>
+    <h1 style=" margin: 20px;
+    color:whitesmoke;
+	background-color: rgb(0, 0, 151)">Global Innovation Map</h1>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
+<script>
+   // Initialize the map centered around a global IT hub
+var map = L.map('map').setView([20, 40], 2); // Centered on the world with zoom level 3
+
+// Add tile layer (OpenStreetMap)
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+// List of major IT hotspots with coordinates
+var clusters = [
+{ name: "Silicon Valley, USA", lat: 37.7749, lon:-122.4194, description: "Tech & AI Hub" },
+    { name: "Shenzhen, China", lat: 22.5431, lon:114.0579, description: "Electronics & Hardware" },
+    { name: "Berlin, Germany", lat:52.5200, lon:13.4050, description: "Startup & Fintech" },
+    { name: "Bangalore, India", lat:12.9716, lon:77.5946, description: "IT & Software Hub" },
+    { name: "Tel Aviv, Israel", lat:32.0853, lon:34.7818, description: "Cybersecurity & AI" },
+    { name: "London, UK", lat:51.5074, lon:-0.1278, description: "Fintech & Biotech" },
+    { name: "Stockholm, Sweden", lat:59.3293,  lon:18.0686, description: "Gaming & Greentech" },
+    { name: "Singapore", lat:1.3521, lon:103.8198, description: "Smart Cities & Fintech" },
+    { name: "Seoul, South Korea", lat:37.5665, lon:126.9780, description: "AI & Robotics" },
+    { name: "Toronto, Canada", lat:43.65107, lon:-79.347015, description: "AI & Quantum Computing" },
+    { name: "Paris, France", lat: 48.8566, lon:2.3522, description: "Luxury Tech & FashionTech" },
+    { name: "Dubai, UAE", lat:25.276987, lon:55.296249, description: "Blockchain & Smart Cities" }
+];
+
+// Loop through hotspots and add markers
+clusters.forEach(function (location) {
+    L.marker([location.lat, location.lon]).addTo(map)
+        .bindPopup(`<b>${location.name}</b>`)
+        .openPopup();
+});
+
+</script>
+<div class="innovation-container">
+    <div class="card">
+        <img src="https://image.cnbcfm.com/api/v1/image/104343343-RTX2ZXKG.jpg?v=1529452241&w=1920&h=1080">
+        <div class="card-content">
+            <h3>Silicon Valley, USA</h3>
+            <p>The world's leading technology hub, home to Apple, Google, and Facebook.</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://cdn-images-1.medium.com/max/725/1*ZcpIjbV0m4o8bIrxVK06Tw.jpeg" alt="Bangalore">
+        <div class="card-content">
+            <h3>Bangalore, India</h3>
+            <p>India's Silicon Valley, a major hub for IT and startups.</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh2625R5ZLe_1Q_lhbqc_-Yvs75FQazxKOJw&s" alt="Shenzhen">
+        <div class="card-content">
+            <h3>Shenzhen, China</h3>
+            <p>Global innovation center for AI, tech, and electronics.</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://t3.ftcdn.net/jpg/04/98/23/10/360_F_498231018_6w6Zt0h2PdU4Muy5Tvph2VeNG67yTuwl.jpg" alt="Tokyo">
+        <div class="card-content">
+            <h3>Tokyo, Japan</h3>
+            <p>Leader in robotics, AI, and high-tech industries.</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5I9HTJZy75x84VyJFTMQ1KZZXId3rbVm0Fg&s" alt="Singapore">
+        <div class="card-content">
+            <h3>Singapore</h3>
+            <p>A major innovation and fintech hub in Asia.</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://cdn.britannica.com/31/255531-050-B7E07090/eiffel-tower-paris-france-champ-de-mars-view.jpg" alt="Paris">
+        <div class="card-content">
+            <h3>Paris, France</h3>
+            <p>Strong in AI, biotech, and financial technology.</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://www.frasershospitality.com/en/locations/germany/berlin/capri-by-fraser-berlin/city-guide/berlin-travel-guide/_jcr_content/root/container/column_controller_2068050587/column-1-wrapper/image_1207548571_cop.coreimg.jpeg/1714398416309/berlin-skyline.jpeg" alt="Berlin">
+        <div class="card-content">
+            <h3>Berlin, Germany</h3>
+            <p>A rising European startup and tech capital.</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Stockholm_Skyline.jpg/400px-Stockholm_Skyline.jpg" alt="Sweden">
+        <div class="card-content">
+            <h3>Stockholm, Sweden</h3>
+            <p>Home to fintech startups and innovation in sustainability.</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/London_Skyline.jpg/400px-London_Skyline.jpg" alt="London">
+        <div class="card-content">
+            <h3>London, UK</h3>
+            <p>Europe's financial and tech powerhouse.</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Tel_Aviv_Skyline.jpg/400px-Tel_Aviv_Skyline.jpg" alt="Tel Aviv">
+        <div class="card-content">
+            <h3>Tel Aviv, Israel</h3>
+            <p>Leading cybersecurity and AI startup ecosystem.</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Dubai_Skyline.jpg/400px-Dubai_Skyline.jpg" alt="Dubai">
+        <div class="card-content">
+            <h3>Dubai, UAE</h3>
+            <p>Rising in fintech, AI, and smart city innovations.</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Seoul_Skyline.jpg/400px-Seoul_Skyline.jpg" alt="Seoul">
+        <div class="card-content">
+            <h3>Seoul, South Korea</h3>
+            <p>Technology and entertainment powerhouse.</p>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
+</body>
+</html>

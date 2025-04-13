@@ -1,0 +1,83 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #dce1ff;
+    margin: 0;
+}
+#map {
+    width: 90%;
+    height: 500px;
+    margin: auto;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+}
+.logo-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Flexbox for Logo and Text */
+.logo-with-text {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space between logo and text */
+}
+
+/* Logo Style */
+.logo {
+    width: 100px; /* Adjust logo size */
+    height: auto;
+}
+
+/* Logo Text */
+.logo-text h1 {
+    font-size: 24px;
+    color: #333;
+    margin: 0;
+}
+
+.logo-text p {
+    font-size: 14px;
+    color: #555;
+    margin: 5px 0 0;
+}
+.innovation-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 15px;
+}
+
+.card h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 0.9em;
+    color: #666;
+}
